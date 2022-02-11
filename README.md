@@ -15,7 +15,8 @@ JavaScrpt básico.
 Para que el proyecto funcione hacemos lo siguiente:
 
 git clone https://github.com/IrvinAlexanders/Predio.git en su carpeta destino.
-luego de clonar creamos las migraciones: python manage.py makemigrations
+instalamos los paquetes requeridos: python -r requeriments.txt
+luego de clonar e instalar los paquetes creamos las migraciones: python manage.py makemigrations
 seguido de crear las migraciones, las aplicamos asi: python manage.py migrate
 Por ultimo corremos nuestro proyecto: python manage.py runserver
 Abrimos nuestro navegador y escribimos: localhost:8000.
