@@ -1,0 +1,57 @@
+{% extends 'inicio.html' %}
+{% block contenido %}
+<div class="panel panel-primary">
+    <br>
+    <div class="panel-heading">
+      
+        <h1>
+           <i class="bi bi-zoom-in"></i>&nbsp; Busqueda
+        </h1>
+
+    </div>
+</div>
+<div class="panel-body col-md-10 container-md">
+    <div class="table-stats order-table ov-h">
+        <form action="{% url 'Consulta:buscador' %}" method="get">
+            <div class="input-group col-md-12">
+                <input type="text" class="form-control"  placeholder="Buscar" name="name" id="name">
+                <span></span>
+            </div>
+            <button type="submit" class="btn btn-outline-info btn-block mt-1" data-toggle="popover"><i class="bi bi-layout-text-sidebar-reverse"></i>&nbsp; Inspeccionar</button>
+        </form>
+      
+
+        <div class="panel-body col-md-10 container-md">
+    <div class="table-stats order-table ov-h">
+          <table class="table ">
+            <thead>
+                <tr>
+                    <th>Cliente</th> 
+                    <th>Tipo de Cliente</th>
+                    <th>Numero de identificacion</th> 
+                    <th>Tipo De Geografia</th>
+                    <th>Predio</th>
+
+                 </tr>
+            </thead>
+            <tbody>
+                {% for item in Propietario  %}
+                <tr>
+                    <td class="serial">{{item.Cliente}}</td>
+                    <td class="serial">{{item.Cliente.TipoCliente}}</td>
+                    <td> <span class="name">{{item.Cliente.numeroIdentificacion}}</span> </td>
+                    <td> <span class="name">{{item.Predio.TipoGeografia}}</span> </td>
+                    <td> <span class="name">{{item.Predio}}</span> </td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+    
+
+      
+    </div> <!-- /.table-stats -->
+</div>
+
+
+{%endblock contenido%}

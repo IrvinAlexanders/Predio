@@ -1,0 +1,91 @@
+{% extends 'inicio.html' %}
+{% block contenido %}
+<div class="panel panel-primary">
+    <br>
+    <div class="panel-heading">
+
+        <a class="btn btn-outline-primary float-right" href="{% url 'Cliente:Insertar' %}"><i class="bi bi-plus-circle-fill " style="font-size: 1.2rem;"></i>&nbsp; Agregar cliente</a>
+        
+        <h1>
+           <i class="bi bi-people-fill"></i>&nbsp; Clientes
+        </h1>
+    </div>
+</div>
+<div class="panel-body col-md-10 container-md">
+    <div class="table-stats order-table ov-h">
+        <table class="table ">
+            <thead>
+                <tr>
+                    <th class="serial">ID</th>
+                    <th>tipo de cedula</th>
+                     <th>tipo de cliente</th>
+                    <th>nombre</th> 
+                    <th>identificacion</th>
+                    <th>Acciones</th>
+                 </tr>
+            </thead>
+            {% csrf_token %}
+            <tbody>
+                {% for item in cliente  %}
+                <tr>
+                    <td class="serial"> {{item.id}}</td>
+
+                    <td> <span class="name">{{item.TipoIdentificacion}}</span> </td>
+                    <td>
+                        <span class="name">{{item.TipoCliente}}</span>
+                    </td>
+                    <td>
+                        <span class="name">{{item.NombreCliente}}</span>
+                    </td>
+                    <td>
+                        <span class="name">{{item.numeroIdentificacion}}</span>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+                            onclick="url('{% url 'Cliente:Eliminar' item.id  %}','{% url 'Cliente:Editar' item.id  %}','{{item.id}}')">
+                             <i class="bi bi-wrench"></i>&nbsp; Acciones
+                             
+                        </button>
+                    </td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+    </div> <!-- /.table-stats -->
+</div>
+<div class="modal"  id="exampleModal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Acciones para este cliente</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="Animation(0)">
+                    <i class="bi bi-x-square" style="font-size: 2rem;"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+               <a id="editar" type="button" class="btn btn-success"><i class="bi bi-pencil-square"></i> &nbsp; Editar</a>
+               <a id="eliminar" type="button" class="btn btn-danger" ><i class="bi bi-trash-fill"></i> &nbsp; Eliminar</a>
+ 
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function url(string1, string2, string3, string4){
+        $("#eliminar").attr('href',string1)
+        $("#editar").attr('href',string2)
+        $("#agragarrol").attr('href',string3)
+        document.getElementById("name").value =string4
+        $("#name").hide();
+        sessionStorage['idcaso']=string4;
+        Animation(250)
+    }
+</script>
+{%endblock contenido%}

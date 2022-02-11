@@ -1,0 +1,46 @@
+{% extends 'inicio.html' %}
+{% block contenido %}
+<div id="fondoc">
+
+</div>
+           <form method="post">
+
+<div class="modal" tabindex="-1" role="dialog" id="elminarModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Eliminar propietario</h5>
+               
+            </div>
+            <div class="modal-body">
+   
+                  <div class="panel panel-default">
+                      <div class="panel-heading">
+                          Eliminar
+                      </div>
+                      <div class="panel-body">
+                          {% csrf_token %}
+                          <div class="alert alert-succes">
+                      
+                           
+                                 <a href="{% url 'Propietario:propietarios' %}" class="btn btn-succes">
+                                     <span class="fa fa-undo"></span>
+                                 </a>
+                            
+                          </div>
+                      </div>
+        
+            </div>
+            <div class="modal-footer">
+                   <button type="submit" class="btn btn-danger">
+                      
+                       Eliminar
+
+                   </button>
+               
+            </div>
+        </div>
+    </div>
+</div>
+      </form>
+{% endblock contenido %}
